@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+  <name>KM Plot</name>
+  <id>org.knoxmakers.kmplot</id>
+  <script>
+    <command location="inx" interpreter="python">kmplot.py</command>
+  </script>
+  <effect>
+    <object-type>all</object-type>
+    <effects-menu>
+      <submenu _name="Knox Makers" />
+    </effects-menu>
+  </effect>
+</inkscape-extension>
