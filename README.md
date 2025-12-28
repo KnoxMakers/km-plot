@@ -16,3 +16,7 @@ Inkscape extension for Knox Makers to drive HPGL based vinyl/plotter devices ove
 3) Restart Inkscape, then find the extension under **Extensions -> Knox Makers -> KM Plot**.
 
 4) Connect your plotter via USB/serial; select the detected port in the Device tab, adjust settings as needed, and click **Send to plotter**.
+
+## Demo
+
+![KM Plot demo](docs/km-plot.gif)
