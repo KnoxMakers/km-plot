@@ -1,3 +1,8 @@
+import errno
+import os
+import platform
+
+
 class PlotEngine:
 
     def __init__(self, extension):
@@ -108,7 +113,17 @@ class PlotEngine:
             f"stop={ser.stopbits} parity={ser.parity} flow={flow}"
         )
 
-        ser.open()
+        try:
+            ser.open()
+        except Exception as exc:
+            hint = ""
+            if platform.system().lower() == "linux" and self._is_permission_denied(exc):
+                hint = (
+                    " Permission denied opening serial port. On Linux, add your user to the "
+                    "'dialout' group (e.g. `sudo usermod -aG dialout $USER`) and log out/in, "
+                    "or adjust udev permissions."
+                )
+            raise RuntimeError(f"Failed to open serial port {device_path}: {exc}.{hint}") from exc
         try:
             ser.write(hpgl.encode("utf8"))
             try:
@@ -123,3 +138,13 @@ class PlotEngine:
             self.ext.svg.convert_to_paths(convert)
         except Exception as exc:
             self.ext.debug(f"Preprocess convert_to_paths failed: {exc}")
+
+    def _is_permission_denied(self, exc):
+        errno_val = getattr(exc, "errno", None)
+        if errno_val is None:
+            inner = getattr(exc, "os_error", None)
+            errno_val = getattr(inner, "errno", None)
+        if errno_val == errno.EACCES:
+            return True
+        text = str(exc)
+        return "Permission denied" in text or "access is denied" in text.lower()
