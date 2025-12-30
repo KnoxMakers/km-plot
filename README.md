@@ -2,6 +2,9 @@
 
 Inkscape extension for Knox Makers to drive HPGL based vinyl/plotter devices over serial. Largely based on the built-in Export > Plot extension for Inkscape but with a GTK interface and Serial Port detection.
 
+https://git.knoxmakers.org/KnoxMakers/km-plot
+
+
 ## Manual Installation
 
 1) Create a km-plot/ sub-directory in your Inkscape extensions directory:
