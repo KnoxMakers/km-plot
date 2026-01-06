@@ -5,6 +5,7 @@ import platform
 import subprocess
 import sys
 from pathlib import Path
+import ctypes
 
 # Make bundled deps (e.g., pyserial) importable before loading inkex.
 BASE_DIR = Path(__file__).resolve().parent
@@ -14,6 +15,15 @@ if DEPS_DIR.exists():
 
 # Enable stderr logging when set True (or via KM_PLOT_DEBUG=1 environment variable).
 DEBUG = os.environ.get("KM_PLOT_DEBUG", "").lower() in {"1", "true", "yes"}
+
+# Hide the transient console window that appears on Windows.
+if os.name == "nt":  # pragma: win32-only
+    try:
+        hwnd = ctypes.windll.kernel32.GetConsoleWindow()
+        if hwnd:
+            ctypes.windll.user32.ShowWindow(hwnd, 0)  # SW_HIDE
+    except Exception:
+        pass
 
 import inkex
 from gui import KMPlotGUI, Gtk, GLib

@@ -16,7 +16,7 @@ https://git.knoxmakers.org/KnoxMakers/km-plot
 
 2) Copy the files from this repo into that km-plot directory
 
-3) Restart Inkscape, then find the extension under **Extensions -> Knox Makers -> KM Plot**.
+3) Restart Inkscape, then find the extension under **Extensions > Knox Makers > Vinyl Cutter > Plot**.
 
 4) Connect your plotter via USB/serial; select the detected port in the Device tab, adjust settings as needed, and click **Send to plotter**.
 

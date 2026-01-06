@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
-  <name>KM Plot</name>
+  <name>Plot</name>
   <id>org.knoxmakers.kmplot</id>
   <script>
     <command location="inx" interpreter="python">kmplot.py</command>
@@ -8,7 +8,9 @@
   <effect>
     <object-type>all</object-type>
     <effects-menu>
-      <submenu _name="Knox Makers" />
+      <submenu _name="Knox Makers">
+        <submenu _name="Laser"/>
+      </submenu>
     </effects-menu>
   </effect>
 </inkscape-extension>
